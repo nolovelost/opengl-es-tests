@@ -1,0 +1,5 @@
+# Output Files
+build/*
+
+# emacs backup files
+*~
