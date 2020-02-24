@@ -3,7 +3,8 @@
 int Engine::Initialize()
 {
     // Initialize esContext and set the handle to the userData within it
-    esInitContext(&esContext);
+    //esInitContext(&esContext);
+    esContext.userData = malloc ( sizeof ( UserData ) );
     esContext.userData = &userData;
 
     // Create a window with the appropriate context, name, res and type
@@ -14,7 +15,7 @@ int Engine::Initialize()
 
     esRegisterDrawFunc(&esContext, Draw);
 
-    esMainLoop(&esContext);
+    //esMainLoop(&esContext);
     
     return 1;
 }

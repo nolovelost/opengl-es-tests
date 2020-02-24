@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "esUtil.h"
+#include "..\Common\esUtil.h"
 
 struct UserData
 {
@@ -11,7 +11,7 @@ static void Draw(ESContext *esContext);
 
 class Engine
 {
-private:
+public:
     ESContext esContext;
     UserData userData;
 
