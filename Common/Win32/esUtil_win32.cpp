@@ -42,6 +42,7 @@
 #include <stdlib.h>
 #include "..\esUtil.h"
 #include "..\..\src\ogles.h"
+#include "..\esUtil_win.h"
 
 #ifdef _WIN64
 #define GWL_USERDATA GWLP_USERDATA
@@ -232,7 +233,8 @@ void WinLoop ( ESContext *esContext )
 //  Global extern.  The application must declare this function
 //  that runs the application.
 //
-extern int esMain ( ESContext *esContext );
+//extern int esMain ( ESContext *esContext );
+//extern int Engine::Initialize();
 
 ///
 //  main()
@@ -242,18 +244,20 @@ extern int esMain ( ESContext *esContext );
 int main ( int argc, char *argv[] )
 {
     Engine* e = new Engine();
-    return e->Initialize();
+    e->Initialize();
+
+    OutputDebugString("Engine intialized\n");
     
-    ESContext esContext;
+    //ESContext esContext;
 
-    memset ( &e->esContext, 0, sizeof ( ESContext ) );
+    //memset ( &e->esContext, 0, sizeof ( ESContext ) );
 
-    if ( esMain ( &e->esContext ) != GL_TRUE )
-    {
-	return 1;
-    }
+    // if ( esMain ( &e->esContext ) != GL_TRUE )
+    // {
+    // 	return 1;
+    // }
 
-    WinLoop ( &esContext );
+    WinLoop (& e->esContext );
 
     if ( e->esContext.shutdownFunc != NULL )
     {

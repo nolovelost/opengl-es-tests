@@ -13,11 +13,12 @@ int Engine::Initialize()
     if (!Init(&esContext))
 	return 0;
 
+    esRegisterShutdownFunc(&esContext, Shutdown);
     esRegisterDrawFunc(&esContext, Draw);
 
     //esMainLoop(&esContext);
     
-    return 1;
+    return GL_TRUE;
 }
 
 // type is either vertex or fragment shader
@@ -207,3 +208,27 @@ static void Draw(ESContext *esContext)
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
 }
+
+static void Shutdown(ESContext *esContext)
+{
+    UserData *userData = (UserData*)esContext->userData;
+
+    glDeleteProgram(userData->programObject);
+}
+
+// static int esMain ( ESContext *esContext )
+// {
+//    esContext->userData = malloc ( sizeof ( UserData ) );
+
+//    esCreateWindow ( esContext, "Hello Triangle", 320, 240, ES_WINDOW_RGB );
+
+//    if ( !Init ( esContext ) )
+//    {
+//       return GL_FALSE;
+//    }
+
+//    esRegisterShutdownFunc ( esContext, Shutdown );
+//    esRegisterDrawFunc ( esContext, Draw );
+
+//    return GL_TRUE;
+// }

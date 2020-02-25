@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "..\Common\esUtil.h"
+//#include "..\Common\esUtil_win32.cpp"
 
 struct UserData
 {
@@ -8,6 +9,8 @@ struct UserData
 };
 
 static void Draw(ESContext *esContext);
+static void Shutdown(ESContext *esContext);
+//static int esMain(ESContext *esContext);
 
 class Engine
 {
@@ -22,4 +25,5 @@ public:
     
     GLuint LoadShader(GLenum type, const char *shaderSrc);
     int Init(ESContext *esContext);
+
 };
